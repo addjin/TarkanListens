@@ -1,2 +1,8 @@
+.venv
 credentials.json
 masters.txt
+scopes.txt
+__pycache__/gmailUtil.cpython-312.pyc
+.vscode/launch.json
+token.json
+__pycache__/util.cpython-312.pyc
