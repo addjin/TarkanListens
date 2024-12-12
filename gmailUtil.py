@@ -13,6 +13,24 @@ from googleapiclient.errors import HttpError
 # If modifying these scopes, delete the file token.json.
 SCOPES = util.readLinesToList('scopes.txt')
 
+
+class Mail():
+    #TODO mail object
+
+    _messageDict = {}
+    sender = ''
+    subject = ''
+    body = ''
+
+    pass
+
+
+class GmailHandler():
+    # TODO The main function of this class is to store the service so it can requests related to Gmail (sending and reading emails, etc.)
+    pass
+
+
+
 def getGmailService():
     creds = None
   # The file token.json stores the user's access and refresh tokens, and is
@@ -46,16 +64,19 @@ def getGmailService():
     return service
 
 
-def getMessages(service, labelIds):
+def getMessageIDs(service, labelIds):
     """Returns a list of emails with the specified labels."""
     messageIdsDict = service.users().messages().list(userId='me', labelIds=labelIds).execute()
 
     if len(messageIdsDict) == 0:
         return []
     
-    messageIds = [msg['id'] for msg in messageIdsDict]
+    return messageIdsDict['messages']
 
 
 def getUnreadMessages(service):
     """Returns all unread emails."""
-    return getMessages(service=service, labelIds=['UNREAD'])
+    return getMessageIDs(service=service, labelIds=['UNREAD'])
+
+
+# def getMessageDictFromId(id:str):
